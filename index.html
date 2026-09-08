@@ -1,1316 +1,1431 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Дика — Personal Website</title>
-
-    <style>
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: Arial, Helvetica, sans-serif;
-            background: #010314;
-            color: white;
-            overflow-x: hidden;
-        }
-
-
-        /* ================= BACKGROUND ================= */
-
-        body::before {
-            content: "";
-            position: fixed;
-            width: 700px;
-            height: 700px;
-
-            background: #6d3df5;
-
-            filter: blur(220px);
-
-            opacity: 0.14;
-
-            top: -300px;
-            right: -200px;
-
-            z-index: -3;
-
-            animation: purpleGlow 10s ease-in-out infinite alternate;
-        }
-
-
-        body::after {
-            content: "";
-
-            position: fixed;
-
-            width: 500px;
-            height: 500px;
-
-            background: #8b5cf6;
-
-            filter: blur(200px);
-
-            opacity: 0.08;
-
-            bottom: -250px;
-            left: -200px;
-
-            z-index: -3;
-
-            animation: purpleGlow2 12s ease-in-out infinite alternate;
-        }
-
-
-        @keyframes purpleGlow {
-
-            0% {
-                transform: translate(0, 0) scale(1);
-            }
-
-            100% {
-                transform: translate(-100px, 120px) scale(1.2);
-            }
-
-        }
-
-
-        @keyframes purpleGlow2 {
-
-            0% {
-                transform: translate(0, 0) scale(1);
-            }
-
-            100% {
-                transform: translate(100px, -100px) scale(1.2);
-            }
-
-        }
-
-
-        /* ================= NAVIGATION ================= */
-
-        nav {
-            width: 100%;
-
-            padding: 25px 8%;
-
-            display: flex;
-
-            justify-content: space-between;
-
-            align-items: center;
-
-            position: fixed;
-
-            top: 0;
-            left: 0;
-
-            background: rgba(1, 3, 20, 0.65);
-
-            backdrop-filter: blur(18px);
-
-            z-index: 1000;
-
-            border-bottom: 1px solid rgba(255,255,255,0.05);
-        }
-
-
-        .logo {
-            font-size: 24px;
-
-            font-weight: 800;
-
-            letter-spacing: 2px;
-
-            color: white;
-        }
-
-
-        .logo span {
-            color: #8c5cff;
-        }
-
-
-        nav ul {
-            display: flex;
-
-            gap: 35px;
-
-            list-style: none;
-        }
-
-
-        nav ul li a {
-            color: #aaa;
-
-            text-decoration: none;
-
-            font-size: 14px;
-
-            transition: 0.3s;
-        }
-
-
-        nav ul li a:hover {
-            color: white;
-        }
-
-
-        /* ================= HERO ================= */
-
-        .hero {
-
-            min-height: 100vh;
-
-            display: flex;
-
-            align-items: center;
-
-            padding: 140px 8% 80px;
-
-            position: relative;
-        }
-
-
-        .hero-text {
-
-            max-width: 750px;
-
-            animation: heroAppear 1.2s ease forwards;
-        }
-
-
-        @keyframes heroAppear {
-
-            from {
-                opacity: 0;
-                transform: translateY(40px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-
-        }
-
-
-        .small-title {
-
-            color: #9a73ff;
-
-            font-size: 14px;
-
-            letter-spacing: 3px;
-
-            text-transform: uppercase;
-
-            margin-bottom: 20px;
-        }
-
-
-        .hero h1 {
-
-            font-size: clamp(50px, 7vw, 95px);
-
-            line-height: 0.95;
-
-            margin-bottom: 30px;
-
-            letter-spacing: -3px;
-        }
-
-
-        .hero h1 span {
-
-            color: #8b5cf6;
-
-            text-shadow:
-                0 0 30px rgba(139,92,246,0.25);
-        }
-
-
-        .hero p {
-
-            color: #aaa;
-
-            font-size: 18px;
-
-            line-height: 1.7;
-
-            max-width: 650px;
-
-            margin-bottom: 35px;
-        }
-
-
-        /* ================= BUTTONS ================= */
-
-        .buttons {
-
-            display: flex;
-
-            gap: 15px;
-
-            flex-wrap: wrap;
-        }
-
-
-        .btn {
-
-            padding: 15px 25px;
-
-            border-radius: 10px;
-
-            text-decoration: none;
-
-            font-weight: bold;
-
-            transition: 0.3s;
-
-            display: inline-block;
-        }
-
-
-        .btn-primary {
-
-            background: #6d3df5;
-
-            color: white;
-
-            box-shadow:
-                0 0 30px rgba(109,61,245,0.25);
-        }
-
-
-        .btn-primary:hover {
-
-            transform: translateY(-4px);
-
-            box-shadow:
-                0 0 45px rgba(109,61,245,0.5);
-        }
-
-
-        .btn-secondary {
-
-            border: 1px solid #333;
-
-            color: white;
-
-            background: rgba(255,255,255,0.01);
-        }
-
-
-        .btn-secondary:hover {
-
-            border-color: #7044f5;
-
-            background: rgba(112,68,245,0.08);
-
-            transform: translateY(-4px);
-        }
-
-
-        /* ================= SECTIONS ================= */
-
-        section {
-
-            padding: 110px 8%;
-
-            position: relative;
-        }
-
-
-        .section-title {
-
-            font-size: 45px;
-
-            margin-bottom: 20px;
-
-            letter-spacing: -1px;
-        }
-
-
-        .section-subtitle {
-
-            color: #777;
-
-            margin-bottom: 50px;
-
-            max-width: 650px;
-
-            line-height: 1.7;
-        }
-
-
-        /* ================= ABOUT ================= */
-
-        .about-box {
-
-            max-width: 900px;
-
-            padding: 40px;
-
-            border: 1px solid #1c1e34;
-
-            border-radius: 20px;
-
-            background: rgba(255,255,255,0.025);
-
-            backdrop-filter: blur(10px);
-
-            line-height: 1.9;
-
-            color: #aaa;
-
-            box-shadow:
-                0 20px 80px rgba(0,0,0,0.15);
-        }
-
-
-        .about-box p {
-
-            margin-bottom: 20px;
-        }
-
-
-        .about-box p:last-child {
-
-            margin-bottom: 0;
-        }
-
-
-        /* ================= DIRECTIONS ================= */
-
-        .cards {
-
-            display: grid;
-
-            grid-template-columns: repeat(3, 1fr);
-
-            gap: 20px;
-        }
-
-
-        .card {
-
-            padding: 35px;
-
-            border: 1px solid #1c1e34;
-
-            border-radius: 20px;
-
-            background:
-                linear-gradient(
-                    145deg,
-                    rgba(255,255,255,0.035),
-                    rgba(255,255,255,0.01)
-                );
-
-            backdrop-filter: blur(10px);
-
-            transition: 0.4s;
-        }
-
-
-        .card:hover {
-
-            transform: translateY(-8px);
-
-            border-color: rgba(115,72,240,0.5);
-
-            box-shadow:
-                0 20px 60px rgba(89,45,209,0.15);
-        }
-
-
-        .card-icon {
-
-            font-size: 35px;
-
-            margin-bottom: 20px;
-        }
-
-
-        .card h3 {
-
-            margin-bottom: 15px;
-
-            font-size: 22px;
-        }
-
-
-        .card p {
-
-            color: #888;
-
-            line-height: 1.7;
-        }
-
-
-        /* ================= ACHIEVEMENTS ================= */
-
-        .achievements {
-
-            display: grid;
-
-            grid-template-columns: repeat(2, 1fr);
-
-            gap: 20px;
-        }
-
-
-        .achievement {
-
-            padding: 30px;
-
-            border: 1px solid #1c1e34;
-
-            border-radius: 18px;
-
-            background: rgba(255,255,255,0.02);
-
-            backdrop-filter: blur(10px);
-
-            transition: 0.35s;
-        }
-
-
-        .achievement:hover {
-
-            border-color: rgba(140,92,255,0.45);
-
-            transform: translateY(-5px);
-
-            box-shadow:
-                0 15px 45px rgba(89,45,209,0.12);
-        }
-
-
-        .achievement h3 {
-
-            margin-bottom: 10px;
-
-            font-size: 19px;
-        }
-
-
-        .achievement p {
-
-            color: #888;
-
-            line-height: 1.6;
-        }
-
-
-        /* ================= PERSONAL INFORMATION ================= */
-
-        .info-grid {
-
-            display: grid;
-
-            grid-template-columns: repeat(3, 1fr);
-
-            gap: 20px;
-        }
-
-
-        .info-card {
-
-            padding: 30px;
-
-            border-radius: 18px;
-
-            border: 1px solid #1c1e34;
-
-            background: rgba(255,255,255,0.02);
-
-            backdrop-filter: blur(10px);
-
-            transition: 0.35s;
-        }
-
-
-        .info-card:hover {
-
-            border-color: rgba(140,92,255,0.4);
-
-            transform: translateY(-4px);
-        }
-
-
-        .info-label {
-
-            color: #777;
-
-            font-size: 13px;
-
-            margin-bottom: 10px;
-
-            text-transform: uppercase;
-
-            letter-spacing: 1px;
-        }
-
-
-        .info-value {
-
-            font-size: 17px;
-
-            color: white;
-        }
-
-
-        .info-value a {
-
-            color: #9b75ff;
-
-            text-decoration: none;
-        }
-
-
-        .info-value a:hover {
-
-            text-decoration: underline;
-        }
-
-
-        /* ================= CONTACT ================= */
-
-        .contact-box {
-
-            max-width: 850px;
-
-            padding: 50px;
-
-            border-radius: 25px;
-
-            border: 1px solid #262845;
-
-            background:
-
-                radial-gradient(
-                    circle at top right,
-                    rgba(100,60,220,0.15),
-                    transparent 50%
-                ),
-
-                rgba(255,255,255,0.02);
-
-            backdrop-filter: blur(10px);
-        }
-
-
-        .contact-box h2 {
-
-            font-size: 40px;
-
-            margin-bottom: 15px;
-        }
-
-
-        .contact-box p {
-
-            color: #888;
-
-            line-height: 1.7;
-
-            margin-bottom: 30px;
-        }
-
-
-        .contact-links {
-
-            display: flex;
-
-            gap: 15px;
-
-            flex-wrap: wrap;
-        }
-
-
-        /* ================= FOOTER ================= */
-
-        footer {
-
-            padding: 40px 8%;
-
-            border-top: 1px solid #15172a;
-
-            color: #555;
-
-            text-align: center;
-
-            font-size: 14px;
-        }
-
-
-        /* ================= MOBILE ================= */
-
-        @media (max-width: 900px) {
-
-            nav {
-
-                padding: 20px 5%;
-            }
-
-
-            nav ul {
-
-                gap: 15px;
-            }
-
-
-            .hero {
-
-                padding: 130px 5% 70px;
-            }
-
-
-            section {
-
-                padding: 80px 5%;
-            }
-
-
-            .cards {
-
-                grid-template-columns: 1fr;
-            }
-
-
-            .achievements {
-
-                grid-template-columns: 1fr;
-            }
-
-
-            .info-grid {
-
-                grid-template-columns: 1fr;
-            }
-
-
-            .section-title {
-
-                font-size: 36px;
-            }
-
-        }
-
-
-        @media (max-width: 600px) {
-
-            nav ul {
-
-                display: none;
-            }
-
-
-            .hero h1 {
-
-                font-size: 55px;
-            }
-
-
-            .hero p {
-
-                font-size: 16px;
-            }
-
-
-            .contact-box {
-
-                padding: 30px;
-            }
-
-
-            .contact-box h2 {
-
-                font-size: 30px;
-            }
-
-        }
-
-    </style>
-
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DIKA — Personal Website</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #05020d;
+    color: #fff;
+    overflow-x: hidden;
+}
+
+/* BACKGROUND */
+
+body::before {
+    content: "";
+    position: fixed;
+    width: 550px;
+    height: 550px;
+    background: #6d28d9;
+    filter: blur(180px);
+    opacity: 0.18;
+    top: -180px;
+    left: -180px;
+    z-index: -2;
+    animation: glow 8s infinite alternate;
+}
+
+body::after {
+    content: "";
+    position: fixed;
+    width: 500px;
+    height: 500px;
+    background: #9333ea;
+    filter: blur(180px);
+    opacity: 0.14;
+    right: -180px;
+    bottom: -180px;
+    z-index: -2;
+    animation: glow2 10s infinite alternate;
+}
+
+@keyframes glow {
+    from { transform: translate(0,0); }
+    to { transform: translate(120px,100px); }
+}
+
+@keyframes glow2 {
+    from { transform: translate(0,0); }
+    to { transform: translate(-100px,-80px); }
+}
+
+/* NAVBAR */
+
+nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 20px 7%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(5,2,13,0.75);
+    backdrop-filter: blur(15px);
+    z-index: 1000;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 28px;
+}
+
+nav a {
+    text-decoration: none;
+    color: #aaa;
+    transition: 0.3s;
+}
+
+nav a:hover {
+    color: #fff;
+}
+
+/* LANGUAGE SWITCHER */
+
+.lang-switcher {
+    display: flex;
+    gap: 6px;
+    background: rgba(17, 16, 29, 0.8);
+    padding: 4px;
+    border-radius: 8px;
+    border: 1px solid rgba(139, 92, 246, 0.3);
+}
+
+.lang-btn {
+    background: transparent;
+    border: none;
+    color: #aaa;
+    padding: 4px 8px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 12px;
+    transition: 0.3s;
+}
+
+.lang-btn:hover {
+    color: #fff;
+}
+
+.lang-btn.active {
+    background: #6d28d9;
+    color: #fff;
+}
+
+/* HERO */
+
+.hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 120px 10%;
+}
+
+.hero-content {
+    max-width: 800px;
+    animation: heroIn 1s ease;
+}
+
+@keyframes heroIn {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.small-title {
+    color: #a78bfa;
+    letter-spacing: 4px;
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+.hero h1 {
+    font-size: clamp(55px, 9vw, 95px);
+    margin-bottom: 20px;
+}
+
+.hero h1 span {
+    color: #a78bfa;
+}
+
+.hero p {
+    color: #aaa;
+    font-size: 18px;
+    line-height: 1.8;
+    max-width: 700px;
+}
+
+.buttons {
+    display: flex;
+    gap: 15px;
+    margin-top: 35px;
+}
+
+.btn {
+    text-decoration: none;
+    color: white;
+    background: #11101d;
+    border: 1px solid #5b21b6;
+    padding: 14px 25px;
+    border-radius: 10px;
+    transition: 0.3s;
+}
+
+.btn:hover {
+    background: #6d28d9;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(109,40,217,0.3);
+}
+
+/* SECTIONS */
+
+section {
+    padding: 100px 10%;
+}
+
+.section-title {
+    font-size: 40px;
+    margin-bottom: 45px;
+}
+
+.section-title span {
+    color: #a78bfa;
+}
+
+/* ABOUT */
+
+.about {
+    max-width: 850px;
+}
+
+.about p {
+    color: #aaa;
+    font-size: 17px;
+    line-height: 1.9;
+    margin-bottom: 18px;
+}
+
+/* CARDS */
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 20px;
+}
+
+.card {
+    padding: 30px;
+    border-radius: 18px;
+    background: rgba(17,16,29,0.7);
+    border: 1px solid rgba(139,92,246,0.2);
+    transition: 0.4s;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    border-color: #7c3aed;
+}
+
+.card h3 {
+    margin-bottom: 12px;
+}
+
+.card p {
+    color: #999;
+    line-height: 1.7;
+}
+
+/* ACHIEVEMENTS */
+
+.achievements {
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    gap: 20px;
+}
+
+.achievement {
+    padding: 25px;
+    border-radius: 17px;
+    background: rgba(17,16,29,0.7);
+    border: 1px solid rgba(139,92,246,0.2);
+    transition: 0.3s;
+}
+
+.achievement:hover {
+    transform: translateY(-5px);
+    border-color: #7c3aed;
+}
+
+.achievement h3 {
+    margin-bottom: 10px;
+}
+
+.achievement p {
+    color: #999;
+    line-height: 1.6;
+}
+
+/* HACK THE SYSTEM */
+
+.hack-section {
+    text-align: center;
+}
+
+.hack-box {
+    max-width: 650px;
+    margin: auto;
+    padding: 45px 30px;
+    border-radius: 22px;
+    background: rgba(8,7,20,0.9);
+    border: 1px solid rgba(139,92,246,0.35);
+    box-shadow: 0 20px 70px rgba(0,0,0,0.35);
+    transition: 0.4s;
+}
+
+.hack-box:hover {
+    border-color: #8b5cf6;
+}
+
+.hack-label {
+    color: #a78bfa;
+    font-size: 13px;
+    letter-spacing: 4px;
+    margin-bottom: 15px;
+}
+
+.hack-box h3 {
+    font-size: 30px;
+    margin-bottom: 15px;
+}
+
+.progress {
+    color: #a78bfa;
+    font-size: 14px;
+    margin-bottom: 25px;
+}
+
+.question {
+    font-size: 18px;
+    line-height: 1.6;
+    color: #ddd;
+    margin-bottom: 25px;
+}
+
+.answer-input {
+    width: 100%;
+    padding: 15px;
+    background: #0e0c1b;
+    border: 1px solid #3b315c;
+    border-radius: 10px;
+    outline: none;
+    color: white;
+    font-size: 16px;
+    text-align: center;
+    transition: 0.3s;
+}
+
+.answer-input:focus {
+    border-color: #8b5cf6;
+    box-shadow: 0 0 20px rgba(139,92,246,0.15);
+}
+
+.check-btn {
+    margin-top: 15px;
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: 10px;
+    background: #6d28d9;
+    color: white;
+    cursor: pointer;
+    font-size: 15px;
+    transition: 0.3s;
+}
+
+.check-btn:hover {
+    background: #8b5cf6;
+}
+
+.hack-message {
+    min-height: 30px;
+    margin-top: 20px;
+    font-size: 15px;
+}
+
+.success { color: #8bffb0; }
+.error { color: #ff7373; }
+
+.access-box {
+    display: none;
+    margin-top: 30px;
+    padding: 25px;
+    border-radius: 15px;
+    background: rgba(35,20,65,0.7);
+    border: 1px solid #7c3aed;
+}
+
+.access-box.show {
+    display: block;
+    animation: accessIn 0.5s ease;
+}
+
+@keyframes accessIn {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+.access-box h3 {
+    color: #a78bfa;
+    margin-bottom: 10px;
+}
+
+/* MORE GAMES */
+
+.more-games {
+    margin-top: 80px;
+}
+
+.more-games-title {
+    font-size: 30px;
+    margin-bottom: 10px;
+}
+
+.more-games-subtitle {
+    color: #777;
+    margin-bottom: 35px;
+}
+
+.game-menu {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 20px;
+}
+
+.game-folder {
+    padding: 30px;
+    border-radius: 18px;
+    background: rgba(14,12,27,0.85);
+    border: 1px solid rgba(139,92,246,0.2);
+    transition: 0.35s;
+    cursor: pointer;
+}
+
+.game-folder:hover {
+    transform: translateY(-7px);
+    border-color: #8b5cf6;
+    box-shadow: 0 15px 40px rgba(109,40,217,0.15);
+}
+
+.game-icon {
+    font-size: 40px;
+    margin-bottom: 18px;
+}
+
+.game-folder h3 {
+    margin-bottom: 10px;
+}
+
+.game-folder p {
+    color: #888;
+    line-height: 1.6;
+}
+
+.play-button {
+    display: inline-block;
+    margin-top: 18px;
+    color: #a78bfa;
+    font-size: 14px;
+}
+
+/* DIKA RUN */
+
+.game-window {
+    display: none;
+    margin-top: 35px;
+    padding: 25px;
+    background: rgba(6,5,15,0.95);
+    border: 1px solid #3b315c;
+    border-radius: 20px;
+}
+
+.game-window.active {
+    display: block;
+    animation: gameIn 0.4s ease;
+}
+
+@keyframes gameIn {
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.run-info {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    color: #999;
+}
+
+.run-info span {
+    color: #a78bfa;
+}
+
+.runner-area {
+    position: relative;
+    height: 230px;
+    overflow: hidden;
+    border-radius: 15px;
+    background: #080714;
+    border: 1px solid #252039;
+    cursor: pointer;
+}
+
+.player {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    left: 60px;
+    bottom: 30px;
+    border-radius: 10px;
+    background: #8b5cf6;
+    box-shadow: 0 0 25px rgba(139,92,246,0.8);
+}
+
+.player.jump {
+    animation: jump 0.55s ease;
+}
+
+@keyframes jump {
+    0% { bottom: 30px; }
+    50% { bottom: 135px; }
+    100% { bottom: 30px; }
+}
+
+.obstacle {
+    position: absolute;
+    width: 30px;
+    height: 50px;
+    right: -40px;
+    bottom: 30px;
+    border-radius: 5px;
+    background: #ef4444;
+    animation: obstacle 2.2s linear forwards;
+}
+
+@keyframes obstacle {
+    from { right: -40px; }
+    to { right: 100%; }
+}
+
+.run-text {
+    text-align: center;
+    color: #777;
+    margin: 15px 0;
+}
+
+.game-action {
+    width: 100%;
+    padding: 13px;
+    border: none;
+    border-radius: 9px;
+    background: #6d28d9;
+    color: white;
+    cursor: pointer;
+    font-size: 15px;
+    transition: 0.3s;
+}
+
+.game-action:hover {
+    background: #8b5cf6;
+}
+
+.game-action:disabled {
+    background: #4c1d95;
+    cursor: not-allowed;
+}
+
+/* LUCKY BOXES */
+
+.boxes {
+    display: none;
+    margin-top: 35px;
+    padding: 35px;
+    background: rgba(6,5,15,0.95);
+    border: 1px solid #3b315c;
+    border-radius: 20px;
+}
+
+.boxes.active {
+    display: block;
+}
+
+.boxes h3 {
+    margin-bottom: 25px;
+}
+
+.box-row {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.box {
+    width: 120px;
+    height: 120px;
+    border: none;
+    border-radius: 15px;
+    background: #16122b;
+    border: 1px solid #6d28d9;
+    cursor: pointer;
+    font-size: 48px;
+    transition: 0.4s;
+}
+
+.box:hover {
+    transform: translateY(-10px) rotate(-3deg);
+    box-shadow: 0 15px 35px rgba(109,40,217,0.25);
+}
+
+.box.open {
+    animation: boxOpen 0.6s ease;
+}
+
+@keyframes boxOpen {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.15) rotate(5deg); }
+    100% { transform: scale(1); }
+}
+
+.box-result {
+    min-height: 35px;
+    margin-top: 25px;
+    color: #a78bfa;
+    text-align: center;
+    font-size: 18px;
+}
+
+.reset-btn {
+    margin-top: 15px;
+    padding: 10px 20px;
+    background: #3b315c;
+    border: none;
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+/* SPIN WHEEL */
+
+.wheel-window {
+    display: none;
+    margin-top: 35px;
+    padding: 35px;
+    background: rgba(6,5,15,0.95);
+    border: 1px solid #3b315c;
+    border-radius: 20px;
+    text-align: center;
+}
+
+.wheel-window.active {
+    display: block;
+}
+
+.wheel-pointer {
+    font-size: 30px;
+    color: #a78bfa;
+    line-height: 1;
+    margin-bottom: -10px;
+    position: relative;
+    z-index: 5;
+}
+
+.wheel {
+    width: 250px;
+    height: 250px;
+    margin: 10px auto 25px;
+    border-radius: 50%;
+    border: 8px solid #292344;
+    background: conic-gradient(
+        #6d28d9 0deg 60deg,
+        #17142a 60deg 120deg,
+        #8b5cf6 120deg 180deg,
+        #17142a 180deg 240deg,
+        #6d28d9 240deg 300deg,
+        #17142a 300deg 360deg
+    );
+    position: relative;
+    overflow: hidden;
+    transition: transform 4s cubic-bezier(.12,.75,.15,1);
+}
+
+.wheel-label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    font-weight: bold;
+    font-size: 13px;
+    color: #ffffff;
+}
+
+.wheel-label span {
+    display: inline-block;
+    padding-top: 18px;
+}
+
+/* CONTACT */
+
+.contact-box {
+    max-width: 700px;
+    padding: 35px;
+    border-radius: 20px;
+    background: rgba(17,16,29,0.7);
+    border: 1px solid rgba(139,92,246,0.25);
+}
+
+.contact-item {
+    color: #999;
+    margin: 18px 0;
+}
+
+.contact-item strong {
+    color: white;
+}
+
+.telegram-btn {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 13px 22px;
+    background: #6d28d9;
+    border-radius: 10px;
+    color: white;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.telegram-btn:hover {
+    background: #8b5cf6;
+    transform: translateY(-3px);
+}
+
+/* FOOTER */
+
+footer {
+    padding: 50px 20px;
+    text-align: center;
+    color: #555;
+    border-top: 1px solid rgba(255,255,255,0.05);
+}
+
+/* MOBILE */
+
+@media (max-width: 900px) {
+    .cards, .achievements, .game-menu {
+        grid-template-columns: 1fr;
+    }
+
+    nav {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .nav-right {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    nav ul { gap: 12px; }
+    section { padding: 80px 6%; }
+    .hero { padding: 120px 6%; }
+}
+
+@media (max-width: 600px) {
+    nav ul { display: none; }
+    .hero h1 { font-size: 55px; }
+    .hero p { font-size: 16px; }
+    .buttons { flex-direction: column; }
+    .btn { text-align: center; }
+    .box-row { gap: 8px; }
+    .box { width: 90px; height: 90px; font-size: 35px; }
+    .wheel { width: 210px; height: 210px; }
+}
+</style>
 </head>
-
 
 <body>
 
-
-    <!-- ================= NAVIGATION ================= -->
-
-    <nav>
-
-        <div class="logo">
-            DIKA<span>.</span>
-        </div>
-
-
+<nav>
+    <div class="logo">DIKA.</div>
+    <div class="nav-right">
         <ul>
-
-            <li>
-                <a href="#about">
-                    Обо мне
-                </a>
-            </li>
-
-            <li>
-                <a href="#skills">
-                    Направления
-                </a>
-            </li>
-
-            <li>
-                <a href="#achievements">
-                    Достижения
-                </a>
-            </li>
-
-            <li>
-                <a href="#contact">
-                    Контакты
-                </a>
-            </li>
-
+            <li><a href="#about" data-i18n="nav_about">Обо мне</a></li>
+            <li><a href="#directions" data-i18n="nav_directions">Направления</a></li>
+            <li><a href="#achievements" data-i18n="nav_achievements">Достижения</a></li>
+            <li><a href="#games" data-i18n="nav_games">Games</a></li>
+            <li><a href="#contact" data-i18n="nav_contact">Контакты</a></li>
         </ul>
+        <div class="lang-switcher">
+            <button class="lang-btn active" onclick="changeLang('ru')">RU</button>
+            <button class="lang-btn" onclick="changeLang('uz')">UZ</button>
+            <button class="lang-btn" onclick="changeLang('en')">EN</button>
+        </div>
+    </div>
+</nav>
 
-    </nav>
+<section class="hero">
+    <div class="hero-content">
+        <div class="small-title">PERSONAL WEBSITE</div>
+        <h1 data-i18n="hero_title">Привет, я <span>Dika.</span></h1>
+        <p data-i18n="hero_desc">Я развиваюсь в сфере IT и интересуюсь кибербезопасностью, программированием, веб-разработкой и созданием собственных проектов.</p>
+        <div class="buttons">
+            <a href="#about" class="btn" data-i18n="hero_btn_about">Обо мне</a>
+            <a href="#games" class="btn" data-i18n="hero_btn_games">Игры</a>
+        </div>
+    </div>
+</section>
 
+<section id="about">
+    <h2 class="section-title" data-i18n="about_title">Обо <span>мне</span></h2>
+    <div class="about">
+        <p data-i18n="about_p1">Меня зовут Дика. Я развиваюсь в сфере IT и интересуюсь технологиями, программированием и кибербезопасностью.</p>
+        <p data-i18n="about_p2">Также мне интересны бизнес, создание контента, автомобили, спорт и развитие собственных проектов.</p>
+        <p data-i18n="about_p3">Я постоянно изучаю что-то новое и стараюсь превращать полученные знания в реальные проекты.</p>
+    </div>
+</section>
 
+<section id="directions">
+    <h2 class="section-title" data-i18n="dir_title">Мои <span>направления</span></h2>
+    <div class="cards">
+        <div class="card">
+            <h3>🔐 Cyber Security</h3>
+            <p data-i18n="dir_cyber">Изучение Linux, компьютерных сетей, информационной безопасности и инструментов кибербезопасности.</p>
+        </div>
+        <div class="card">
+            <h3>💻 Programming</h3>
+            <p data-i18n="dir_prog">Изучение программирования, алгоритмов и логического мышления.</p>
+        </div>
+        <div class="card">
+            <h3>🌐 Web Development</h3>
+            <p data-i18n="dir_web">Создание сайтов и изучение современных web-технологий.</p>
+        </div>
+    </div>
+</section>
 
-    <!-- ================= HERO ================= -->
+<section id="achievements">
+    <h2 class="section-title" data-i18n="ach_title">Мои <span>достижения</span></h2>
+    <div class="achievements">
+        <div class="achievement">
+            <h3 data-i18n="ach_belt_t">🥋 Чёрный пояс</h3>
+            <p data-i18n="ach_belt_d">Спортивная подготовка и достижение уровня чёрного пояса в единоборствах.</p>
+        </div>
+        <div class="achievement">
+            <h3 data-i18n="ach_law_t">⚖️ Юриспруденция</h3>
+            <p data-i18n="ach_law_d">Интерес и практические знания в сфере юриспруденции.</p>
+        </div>
+        <div class="achievement">
+            <h3 data-i18n="ach_photo_t">📱 Мобильная съёмка</h3>
+            <p data-i18n="ach_photo_d">Профессиональное обучение мобильной фотографии и видеографии.</p>
+        </div>
+        <div class="achievement">
+            <h3 data-i18n="ach_content_t">🎥 Создание контента</h3>
+            <p data-i18n="ach_content_d">Опыт мобильной съёмки, монтажа и создания визуального контента.</p>
+        </div>
+        <div class="achievement">
+            <h3 data-i18n="ach_biz_t">🤝 Работа с бизнесами</h3>
+            <p data-i18n="ach_biz_d">Сотрудничество с частными бизнесами на договорной основе.</p>
+        </div>
+        <div class="achievement">
+            <h3 data-i18n="ach_comm_t">🚀 Коммерческие проекты</h3>
+            <p data-i18n="ach_comm_d">Участие в коммерческих проектах и работа с предпринимателями.</p>
+        </div>
+    </div>
+</section>
 
-    <section class="hero">
+<section id="games" class="hack-section">
+    <div class="hack-box">
+        <div class="hack-label">SECURITY CHALLENGE</div>
+        <h3>🔐 HACK THE SYSTEM</h3>
+        <div id="progress" class="progress">0/5</div>
+        <div id="question" class="question">Что можно увидеть только тогда, когда закрываешь глаза?</div>
+        <input id="answer" class="answer-input" type="text" placeholder="Введите ответ..." autocomplete="off">
+        <button class="check-btn" onclick="checkAnswer()">CHECK</button>
+        <div id="hackMessage" class="hack-message"></div>
+        <div id="accessBox" class="access-box">
+            <h3>🔓 SYSTEM UNLOCKED</h3>
+            <p id="accessText">Доступ открыт.</p>
+        </div>
+    </div>
 
-        <div class="hero-text">
+    <div class="more-games">
+        <h2 class="more-games-title">MORE GAMES BY D1KA</h2>
+        <p class="more-games-subtitle" data-i18n="games_subtitle">Маленькие игры. Большое желание набрать рекорд.</p>
 
-            <div class="small-title">
-                Personal Website
+        <div class="game-menu">
+            <div class="game-folder" onclick="openRunner()">
+                <div class="game-icon">🏃</div>
+                <h3>DIKA RUN</h3>
+                <p data-i18n="game_run_d">Прыгай через препятствия и набирай максимальный счёт.</p>
+                <div class="play-button">PLAY →</div>
             </div>
 
-
-            <h1>
-
-                Привет,<br>
-
-                я <span>Дика.</span>
-
-            </h1>
-
-
-            <p>
-
-                IT, бизнес и проекты, которыми я занимаюсь.
-                Здесь собрана небольшая информация обо мне,
-                моих интересах, опыте и достижениях.
-
-            </p>
-
-
-            <div class="buttons">
-
-                <a
-                    href="#about"
-                    class="btn btn-primary"
-                >
-                    Обо мне
-                </a>
-
-
-                <a
-                    href="#achievements"
-                    class="btn btn-secondary"
-                >
-                    Мои достижения
-                </a>
-
+            <div class="game-folder" onclick="openBoxes()">
+                <div class="game-icon">🎁</div>
+                <h3>LUCKY BOXES</h3>
+                <p data-i18n="game_box_d">Выбери одну из трёх коробок и узнай, что внутри.</p>
+                <div class="play-button">OPEN →</div>
             </div>
 
+            <div class="game-folder" onclick="openWheel()">
+                <div class="game-icon">🎡</div>
+                <h3>SPIN WHEEL</h3>
+                <p data-i18n="game_wheel_d">Крути колесо и попробуй получить максимум Points.</p>
+                <div class="play-button">SPIN →</div>
+            </div>
         </div>
 
-    </section>
-
-
-
-    <!-- ================= ABOUT ================= -->
-
-    <section id="about">
-
-        <h2 class="section-title">
-            Обо мне
-        </h2>
-
-
-        <p class="section-subtitle">
-
-            Краткая информация о моих интересах
-            и направлениях.
-
-        </p>
-
-
-        <div class="about-box">
-
-            <p>
-
-                Меня зовут Дика. Сейчас я живу в Ташкенте
-                и учусь в сфере IT. Мне интересны
-                кибербезопасность, программирование
-                и веб-разработка.
-
-            </p>
-
-
-            <p>
-
-                Также я интересуюсь бизнесом и хочу
-                развивать собственные проекты, в том числе
-                открыть свой магазин. Помимо этого,
-                уделяю внимание английскому языку.
-
-            </p>
-
-
-            <p>
-
-                В свободное время занимаюсь спортом,
-                интересуюсь автомобилями, технологиями
-                и созданием контента.
-
-            </p>
-
+        <div id="runnerWindow" class="game-window">
+            <div class="run-info">
+                <div>SCORE: <span id="runScore">0</span></div>
+                <div>BEST: <span id="runBest">0</span></div>
+            </div>
+            <div id="runnerArea" class="runner-area">
+                <div id="player" class="player"></div>
+            </div>
+            <p class="run-text" data-i18n="run_hint">SPACE или клик — прыжок.</p>
+            <button class="game-action" onclick="startRunner()">START RUN</button>
         </div>
 
-    </section>
-
-
-
-    <!-- ================= DIRECTIONS ================= -->
-
-    <section id="skills">
-
-        <h2 class="section-title">
-            Направления
-        </h2>
-
-
-        <p class="section-subtitle">
-
-            Основные сферы, которые мне интересны.
-
-        </p>
-
-
-        <div class="cards">
-
-
-            <div class="card">
-
-                <div class="card-icon">
-                    🛡️
-                </div>
-
-
-                <h3>
-                    Cyber Security
-                </h3>
-
-
-                <p>
-
-                    Изучение кибербезопасности,
-                    Linux, сетевых технологий
-                    и информационной безопасности.
-
-                </p>
-
+        <div id="boxesWindow" class="boxes">
+            <h3 data-i18n="boxes_title">🎁 Выбери одну коробку</h3>
+            <div class="box-row">
+                <button class="box" onclick="openBox(this)">🎁</button>
+                <button class="box" onclick="openBox(this)">🎁</button>
+                <button class="box" onclick="openBox(this)">🎁</button>
             </div>
-
-
-
-            <div class="card">
-
-                <div class="card-icon">
-                    💼
-                </div>
-
-
-                <h3>
-                    Business
-                </h3>
-
-
-                <p>
-
-                    Развитие собственных идей,
-                    работа с частными бизнесами
-                    и создание коммерческих проектов.
-
-                </p>
-
-            </div>
-
-
-
-            <div class="card">
-
-                <div class="card-icon">
-                    🌐
-                </div>
-
-
-                <h3>
-                    Web
-                </h3>
-
-
-                <p>
-
-                    Создание современных сайтов,
-                    работа с HTML, CSS и развитие
-                    навыков веб-разработки.
-
-                </p>
-
-            </div>
-
-
+            <div id="boxResult" class="box-result"></div>
+            <button class="reset-btn" onclick="resetBoxes()" data-i18n="reset_btn">Играть снова</button>
         </div>
 
-    </section>
-
-
-
-    <!-- ================= ACHIEVEMENTS ================= -->
-
-    <section id="achievements">
-
-        <h2 class="section-title">
-            Достижения и опыт
-        </h2>
-
-
-        <p class="section-subtitle">
-
-            Дополнительные навыки, опыт
-            и направления деятельности.
-
-        </p>
-
-
-        <div class="achievements">
-
-
-            <div class="achievement">
-
-                <h3>
-                    🥋 Чёрный пояс
-                </h3>
-
-
-                <p>
-
-                    Спортивная подготовка и достижение
-                    уровня чёрного пояса в единоборствах.
-
-                </p>
-
-            </div>
-
-
-
-            <div class="achievement">
-
-                <h3>
-                    ⚖️ Юриспруденция
-                </h3>
-
-
-                <p>
-
-                    Интерес и практические знания
-                    в сфере юриспруденции
-                    и правовых вопросов.
-
-                </p>
-
-            </div>
-
-
-
-            <div class="achievement">
-
-                <h3>
-                    📱 Мобильная съёмка
-                </h3>
-
-
-                <p>
-
-                    Профессиональное обучение мобильной
-                    фотографии и видеографии,
-                    подтверждённое сертификатом.
-
-                </p>
-
-            </div>
-
-
-
-            <div class="achievement">
-
-                <h3>
-                    🎥 Создание контента
-                </h3>
-
-
-                <p>
-
-                    Опыт мобильной съёмки, видеомонтажа
-                    и создания визуального контента.
-
-                </p>
-
-            </div>
-
-
-
-            <div class="achievement">
-
-                <h3>
-                    🤝 Работа с бизнесами
-                </h3>
-
-
-                <p>
-
-                    Сотрудничество с частными бизнесами
-                    на договорной основе.
-
-                </p>
-
-            </div>
-
-
-
-            <div class="achievement">
-
-                <h3>
-                    🚀 Коммерческие проекты
-                </h3>
-
-
-                <p>
-
-                    Опыт участия в коммерческих проектах,
-                    работе с предпринимателями и развитии
-                    собственных идей.
-
-                </p>
-
-            </div>
-
-
+        <div id="wheelWindow" class="wheel-window">
+            <div class="wheel-pointer">▼</div>
+            <div id="wheel" class="wheel"></div>
+            <button id="spinButton" class="game-action" onclick="spinWheel()">SPIN THE WHEEL</button>
+            <div id="wheelResult" class="box-result"></div>
         </div>
-
-    </section>
-
-
-
-    <!-- ================= PERSONAL INFORMATION ================= -->
-
-    <section>
-
-        <h2 class="section-title">
-            Личная информация
-        </h2>
-
-
-        <p class="section-subtitle">
-
-            Основные контактные данные.
-
-        </p>
-
-
-        <div class="info-grid">
-
-
-            <div class="info-card">
-
-                <div class="info-label">
-                    Имя
-                </div>
-
-
-                <div class="info-value">
-                    Bakhshullayev Diyor Davronovich
-                </div>
-
-            </div>
-
-
-
-            <div class="info-card">
-
-                <div class="info-label">
-                    Дата рождения
-                </div>
-
-
-                <div class="info-value">
-                    30.10.0000         </div>
-
-            </div>
-
-
-
-            <div class="info-card">
-
-                <div class="info-label">
-                    Город
-                </div>
-
-
-                <div class="info-value">
-                    Ташкент
-                </div>
-
-            </div>
-
-
-
-            <div class="info-card">
-
-                <div class="info-label">
-                    Telegram
-                </div>
-
-
-                <div class="info-value">
-
-                    <a
-                        href="https://t.me/BDD_777"
-                        target="_blank"
-                    >
-                        @BDD_777
-                    </a>
-
-                </div>
-
-            </div>
-
-
-
-            <div class="info-card">
-
-                <div class="info-label">
-                    E-mail
-                </div>
-
-
-                <div class="info-value">
-
-                    <a
-                        href="mailto:bakhshillayevdiyor@gmail.com"
-                    >
-                        bakhshillayevdiyor@gmail.com
-                    </a>
-
-                </div>
-
-            </div>
-
-
-
-            <div class="info-card">
-
-                <div class="info-label">
-                    Статус
-                </div>
-
-
-                <div class="info-value">
-                    IT Pentester
-                </div>
-
-            </div>
-
-
-        </div>
-
-    </section>
-
-
-
-    <!-- ================= CONTACT ================= -->
-
-    <section id="contact">
-
-        <div class="contact-box">
-
-            <h2>
-                Связаться со мной
-            </h2>
-
-
-            <p>
-
-                Если вы хотите связаться со мной
-                по поводу сотрудничества, проекта
-                или просто общения — можете написать мне.
-
-            </p>
-
-
-            <div class="contact-links">
-
-
-                <a
-                    href="https://t.me/BDD_777"
-                    target="_blank"
-                    class="btn btn-primary"
-                >
-                    Написать в Telegram
-                </a>
-
-
-                <a
-                    href="mailto:bakhshillayevdiyor@gmail.com"
-                    class="btn btn-secondary"
-                >
-                    Написать на E-mail
-                </a>
-
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-
-    <!-- ================= FOOTER ================= -->
-
-    <footer>
-
-        © 2026 DIKA. Personal Website.
-
-    </footer>
-
+    </div>
+</section>
+
+<section id="contact">
+    <h2 class="section-title"><span data-i18n="contact_title">Связаться со мной</span></h2>
+    <div class="contact-box">
+        <div class="contact-item"><strong>Telegram:</strong> @BDD_777</div>
+        <div class="contact-item"><strong>Email:</strong> bakhshillayevdiyor@gmail.com</div>
+        <div class="contact-item"><strong>City:</strong> Tashkent</div>
+        <div class="contact-item"><strong>Status:</strong> IT Student</div>
+        <a href="https://t.me/BDD_777" target="_blank" class="telegram-btn" data-i18n="contact_tg">✈️ Написать в Telegram</a>
+    </div>
+</section>
+
+<footer>
+    © 2026 DIKA. All rights reserved.
+</footer>
+
+<script>
+/* TRANSLATIONS DATA */
+const translations = {
+    ru: {
+        nav_about: "Обо мне",
+        nav_directions: "Направления",
+        nav_achievements: "Достижения",
+        nav_games: "Games",
+        nav_contact: "Контакты",
+        hero_title: 'Привет, я <span>Dika.</span>',
+        hero_desc: 'Я развиваюсь в сфере IT и интересуюсь кибербезопасностью, программированием, веб-разработкой и созданием собственных проектов.',
+        hero_btn_about: 'Обо мне',
+        hero_btn_games: 'Игры',
+        about_title: 'Обо <span>мне</span>',
+        about_p1: 'Меня зовут Дика. Я развиваюсь в сфере IT и интересуюсь технологиями, программированием и кибербезопасностью.',
+        about_p2: 'Также мне интересны бизнес, создание контента, автомобили, спорт и развитие собственных проектов.',
+        about_p3: 'Я постоянно изучаю что-то новое и стараюсь превращать полученные знания в реальные проекты.',
+        dir_title: 'Мои <span>направления</span>',
+        dir_cyber: 'Изучение Linux, компьютерных сетей, информационной безопасности и инструментов кибербезопасности.',
+        dir_prog: 'Изучение программирования, алгоритмов и логического мышления.',
+        dir_web: 'Создание сайтов и изучение современных web-технологий.',
+        ach_title: 'Мои <span>достижения</span>',
+        ach_belt_t: '🥋 Чёрный пояс',
+        ach_belt_d: 'Спортивная подготовка и достижение уровня чёрного пояса в единоборствах.',
+        ach_law_t: '⚖️ Юриспруденция',
+        ach_law_d: 'Интерес и практические знания в сфере юриспруденции.',
+        ach_photo_t: '📱 Мобильная съёмка',
+        ach_photo_d: 'Профессиональное обучение мобильной фотографии и видеографии.',
+        ach_content_t: '🎥 Создание контента',
+        ach_content_d: 'Опыт мобильной съёмки, монтажа и создания визуального контента.',
+        ach_biz_t: '🤝 Работа с бизнесами',
+        ach_biz_d: 'Сотрудничество с частными бизнесами на договорной основе.',
+        ach_comm_t: '🚀 Коммерческие проекты',
+        ach_comm_d: 'Участие в коммерческих проектах и работа с предпринимателями.',
+        games_subtitle: 'Маленькие игры. Большое желание набрать рекорд.',
+        game_run_d: 'Прыгай через препятствия и набирай максимальный счёт.',
+        game_box_d: 'Выбери одну из трёх коробок и узнай, что внутри.',
+        game_wheel_d: 'Крути колесо и попробуй получить максимум Points.',
+        run_hint: 'SPACE или клик — прыжок.',
+        boxes_title: '🎁 Выбери одну коробку',
+        reset_btn: 'Играть снова',
+        contact_title: 'Связаться со мной',
+        contact_tg: '✈️ Написать в Telegram',
+        placeholder_answer: 'Введите ответ...',
+        msg_enter_answer: 'Введите ответ.',
+        msg_correct: 'ACCESS ✓ Correct answer',
+        msg_wrong: '✕ Неправильно! Попробуйте еще раз.',
+        msg_unlocked: 'PERFECT RUN ✓ 5/5 — полный доступ открыт.',
+        game_over: 'DIKA RUN закончена!\nВаш счёт: ',
+        box_win: 'Вы нашли: ',
+        wheel_win: 'Вы выиграли: '
+    },
+    uz: {
+        nav_about: "Men haqimda",
+        nav_directions: "Yo'nalishlar",
+        nav_achievements: "Yutuqlar",
+        nav_games: "O'yinlar",
+        nav_contact: "Aloqa",
+        hero_title: 'Salom, men <span>Dika.</span>',
+        hero_desc: 'Men IT sohasida rivojlanmoqdaman hamda kiberxavfsizlik, dasturlash, veb-dasturlash va shaxsiy loyihalarni yaratishga qiziqaman.',
+        hero_btn_about: 'Men haqimda',
+        hero_btn_games: "O'yinlar",
+        about_title: 'Men <span>haqimda</span>',
+        about_p1: 'Mening ismim Dika. Men IT sohasida rivojlanmoqdaman hamda texnologiyalar, dasturlash va kiberxavfsizlikka qiziqaman.',
+        about_p2: 'Shuningdek, men biznes, kontent yaratish, avtomobillar, sport va shaxsiy loyihalarni rivojlantirishga qiziqaman.',
+        about_p3: 'Men doimiy ravishda yangi narsalarni oʻrganaman va olgan bilimlarimni amaliy loyihalarga aylantirishga harakat qilaman.',
+        dir_title: 'Mening <span>yo\'nalishlarim</span>',
+        dir_cyber: 'Linux, kompyuter tarmoqlari, axborot xavfsizligi va kiberxavfsizlik vositalarini o\'rganish.',
+        dir_prog: 'Dasturlash, algoritmlar va mantiqiy fikrlashni o\'rganish.',
+        dir_web: 'Veb-saytlar yaratish va zamonaviy veb-texnologiyalarni o\'rganish.',
+        ach_title: 'Mening <span>yutuqlarim</span>',
+        ach_belt_t: '🥋 Qora belbog\'',
+        ach_belt_d: 'Sport tayyorgarligi va yakka kurashlarda qora belbog\' darajasiga erishish.',
+        ach_law_t: '⚖️ Yurisprudensiya',
+        ach_law_d: 'Yurisprudensiya sohasidagi qiziqish va amaliy bilimlar.',
+        ach_photo_t: '📱 Mobil suratga olish',
+        ach_photo_d: 'Mobil fotografiya va videografiyani professional o\'rganish.',
+        ach_content_t: '🎥 Kontent yaratish',
+        ach_content_d: 'Mobil suratga olish, montaj va vizual kontent yaratish tajribasi.',
+        ach_biz_t: '🤝 Biznes bilan ishlash',
+        ach_biz_d: 'Shaxsiy bizneslar bilan shartnoma asosida hamkorlik qilish.',
+        ach_comm_t: '🚀 Tijorat loyihalari',
+        ach_comm_d: 'Tijorat loyihalarida ishtirok etish va tadbirkorlar bilan ishlash.',
+        games_subtitle: 'Kichik o\'yinlar. Rekord o\'rnatish uchun katta xohish.',
+        game_run_d: 'G\'ovlardan sakrab o\'ting va maksimal ball to\'plang.',
+        game_box_d: 'Uchta qutidan birini tanlang va ichida nima borligini biling.',
+        game_wheel_d: 'G\'ildirakni aylantiring va maksimal Points olishga harakat qiling.',
+        run_hint: 'SPACE yoki bosing — sakrash.',
+        boxes_title: '🎁 Bitta qutini tanlang',
+        reset_btn: 'Yana o\'ynash',
+        contact_title: 'Men bilan bog\'lanish',
+        contact_tg: '✈️ Telegramda yozish',
+        placeholder_answer: 'Javobni kiriting...',
+        msg_enter_answer: 'Javobni kiriting.',
+        msg_correct: 'ACCESS ✓ To\'g\'ri javob',
+        msg_wrong: '✕ Noto\'g\'ri! Yana bir bor urinib ko\'ring.',
+        msg_unlocked: 'PERFECT RUN ✓ 5/5 — to\'liq kirish ochildi.',
+        game_over: 'DIKA RUN tugadi!\nSizning ballingiz: ',
+        box_win: 'Siz topdingiz: ',
+        wheel_win: 'Siz yutib oldingiz: '
+    },
+    en: {
+        nav_about: "About Me",
+        nav_directions: "Directions",
+        nav_achievements: "Achievements",
+        nav_games: "Games",
+        nav_contact: "Contact",
+        hero_title: 'Hi, I am <span>Dika.</span>',
+        hero_desc: 'I am developing in the IT field and interested in cybersecurity, programming, web development, and creating my own projects.',
+        hero_btn_about: 'About Me',
+        hero_btn_games: 'Games',
+        about_title: 'About <span>Me</span>',
+        about_p1: 'My name is Dika. I am developing in IT and passionate about tech, programming, and cybersecurity.',
+        about_p2: 'I am also interested in business, content creation, cars, sports, and growing personal projects.',
+        about_p3: 'I am constantly learning new things and trying to turn knowledge into real-world projects.',
+        dir_title: 'My <span>Directions</span>',
+        dir_cyber: 'Studying Linux, computer networks, information security, and cybersecurity tools.',
+        dir_prog: 'Learning programming, algorithms, and logical thinking.',
+        dir_web: 'Building websites and mastering modern web technologies.',
+        ach_title: 'My <span>Achievements</span>',
+        ach_belt_t: '🥋 Black Belt',
+        ach_belt_d: 'Athletic training and achieving black belt status in martial arts.',
+        ach_law_t: '⚖️ Law & Jurisprudence',
+        ach_law_d: 'Interest and practical knowledge in the field of law.',
+        ach_photo_t: '📱 Mobile Shooting',
+        ach_photo_d: 'Professional training in mobile photography and videography.',
+        ach_content_t: '🎥 Content Creation',
+        ach_content_d: 'Experience in mobile filming, editing, and visual content production.',
+        ach_biz_t: '🤝 Business Collaboration',
+        ach_biz_d: 'Partnership with private businesses on a contractual basis.',
+        ach_comm_t: '🚀 Commercial Projects',
+        ach_comm_d: 'Participation in commercial projects and work with entrepreneurs.',
+        games_subtitle: 'Mini games. Big desire to hit the high score.',
+        game_run_d: 'Jump over obstacles and score as high as possible.',
+        game_box_d: 'Choose one of three mystery boxes and discover what is inside.',
+        game_wheel_d: 'Spin the wheel and try to get maximum Points.',
+        run_hint: 'SPACE or click — jump.',
+        boxes_title: '🎁 Choose one box',
+        reset_btn: 'Play Again',
+        contact_title: 'Get In Touch',
+        contact_tg: '✈️ Write on Telegram',
+        placeholder_answer: 'Enter answer...',
+        msg_enter_answer: 'Please enter an answer.',
+        msg_correct: 'ACCESS ✓ Correct answer',
+        msg_wrong: '✕ Incorrect! Try again.',
+        msg_unlocked: 'PERFECT RUN ✓ 5/5 — full access granted.',
+        game_over: 'DIKA RUN Over!\nYour Score: ',
+        box_win: 'You found: ',
+        wheel_win: 'You won: '
+    }
+};
+
+let currentLang = 'ru';
+
+function changeLang(lang) {
+    currentLang = lang;
+    
+    // Update Active Button
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.textContent.toLowerCase() === lang);
+    });
+
+    // Update Text Elements
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (translations[lang][key]) {
+            el.innerHTML = translations[lang][key];
+        }
+    });
+
+    // Update Input Placeholder
+    const input = document.getElementById("answer");
+    if(input) input.placeholder = translations[lang].placeholder_answer;
+
+    // Update HACK THE SYSTEM Questions Text
+    if(document.getElementById("question")) {
+        document.getElementById("question").textContent = questions[lang][currentQuestion].question;
+    }
+}
+
+/* HACK THE SYSTEM MULTI-LANG QUESTIONS */
+const questions = {
+    ru: [
+        { question: "Что можно увидеть только тогда, когда закрываешь глаза?", answers: ["сон", "сновидение"] },
+        { question: "Dika хочет открыть свой секретный доступ. Его код — это его никнейм и три одинаковые цифры. Какой код?", answers: ["dika777"] },
+        { question: "Посреди океана идет круизный лайнер. Сбоку спущен веревочный трап, нижняя ступенька касается воды. Расстояние между ступеньками — 30 см. Начинается прилив, уровень воды поднимается на 30 см каждый час. Через сколько часов вода скроет третью ступеньку?", answers: ["никогда", "никогда."] },
+        { question: "На березе росло 5 яблок, а на елке — 3. Сколько всего яблок выросло?", answers: ["0", "ноль", "нисколько"] },
+        { question: "На столе лежит яблоко. Его разрезали на 4 части. Сколько яблок на столе?", answers: ["1", "одно", "одно яблоко", "1 яблоко"] }
+    ],
+    uz: [
+        { question: "Faqat ko'zlaringizni yumganingizda nimani ko'rishingiz mumkin?", answers: ["tush", "tushni"] },
+        { question: "Dika o'zining maxfiy kirishini ochmoqchi. Unining kodi — bu uning taxallusi va uchta bir xil raqam. Kod nima?", answers: ["dika777"] },
+        { question: "Okean o'rtasida kruiz kemasi suzmoqda. Yon tomondan arqon narvon tushirilgan, pastki pog'ona suvga tegib turibdi. Pog'onalar orasidagi masofa — 30 sm. Suv ko'tarilishi boshlanadi, suv darajasi har soatda 30 sm ga ko'tariladi. Necha soatdan keyin suv uchinchi pog'onani yopadi?", answers: ["hech qachon", "hech qachon."] },
+        { question: "Haddan tashqari baland bo'lgan qayin daraxtida 5 ta olma, archada esa 3 ta olma o'sdi. Jami nechta olma o'sgan?", answers: ["0", "nol"] },
+        { question: "Stol ustida olma turibdi. U 4 bo'lakka kesildi. Stol ustida nechta olma bor?", answers: ["1", "bitta", "bitta olma", "1 ta olma"] }
+    ],
+    en: [
+        { question: "What can you only see when you close your eyes?", answers: ["dream", "dreams"] },
+        { question: "Dika wants to unlock his secret access. His code is his nickname plus three identical digits. What is the code?", answers: ["dika777"] },
+        { question: "A cruise ship is in the ocean. A rope ladder hangs over the side, bottom step touching the water. Distance between steps is 30 cm. The tide comes in, raising the water level by 30 cm every hour. How many hours until the 3rd step is underwater?", answers: ["never", "never."] },
+        { question: "5 apples grew on a birch tree, and 3 on a pine tree. How many apples grew in total?", answers: ["0", "zero", "none"] },
+        { question: "There is an apple on the table. It was cut into 4 pieces. How many apples are on the table?", answers: ["1", "one", "one apple", "1 apple"] }
+    ]
+};
+
+let currentQuestion = 0;
+let correctAnswers = 0;
+
+document.getElementById("progress").textContent = `${correctAnswers}/${questions.ru.length}`;
+
+function normalizeAnswer(text) {
+    return text.toLowerCase().trim().replace(/\s+/g, " ");
+}
+
+function checkAnswer() {
+    const input = document.getElementById("answer");
+    const message = document.getElementById("hackMessage");
+    const answer = normalizeAnswer(input.value);
+
+    if (!answer) {
+        message.textContent = translations[currentLang].msg_enter_answer;
+        message.className = "hack-message error";
+        return;
+    }
+
+    const currentSet = questions[currentLang][currentQuestion];
+    const correct = currentSet.answers.some(item => normalizeAnswer(item) === answer);
+
+    if (correct) {
+        correctAnswers++;
+        message.textContent = translations[currentLang].msg_correct;
+        message.className = "hack-message success";
+        currentQuestion++;
+        input.value = "";
+
+        if (correctAnswers >= questions.ru.length) {
+            unlockSystem();
+            return;
+        }
+
+        if (currentQuestion < questions.ru.length) {
+            setTimeout(() => {
+                document.getElementById("progress").textContent = `${correctAnswers}/${questions.ru.length}`;
+                document.getElementById("question").textContent = questions[currentLang][currentQuestion].question;
+                message.textContent = "";
+            }, 600);
+        }
+    } else {
+        message.textContent = translations[currentLang].msg_wrong;
+        message.className = "hack-message error";
+        input.value = "";
+    }
+}
+
+function unlockSystem() {
+    const access = document.getElementById("accessBox");
+    const text = document.getElementById("accessText");
+    document.getElementById("progress").textContent = `${correctAnswers}/${questions.ru.length}`;
+    access.classList.add("show");
+
+    text.textContent = translations[currentLang].msg_unlocked;
+
+    document.getElementById("answer").disabled = true;
+    document.querySelector(".check-btn").disabled = true;
+}
+
+document.getElementById("answer").addEventListener("keydown", function(event) {
+    if (event.key === "Enter") checkAnswer();
+});
+
+/* GAME WINDOWS TOGGLE */
+function closeGames() {
+    endRunner();
+    document.getElementById("runnerWindow").classList.remove("active");
+    document.getElementById("boxesWindow").classList.remove("active");
+    document.getElementById("wheelWindow").classList.remove("active");
+}
+
+function openRunner() {
+    closeGames();
+    const game = document.getElementById("runnerWindow");
+    game.classList.add("active");
+    game.scrollIntoView({ behavior: "smooth", block: "center" });
+}
+
+function openBoxes() {
+    closeGames();
+    const game = document.getElementById("boxesWindow");
+    game.classList.add("active");
+    game.scrollIntoView({ behavior: "smooth", block: "center" });
+}
+
+function openWheel() {
+    closeGames();
+    const game = document.getElementById("wheelWindow");
+    game.classList.add("active");
+    game.scrollIntoView({ behavior: "smooth", block: "center" });
+}
+
+/* DIKA RUN */
+let running = false;
+let runScore = 0;
+let runInterval;
+let obstacleInterval;
+let activeCollisions = [];
+let runBest = Number(localStorage.getItem("dikaRunBest")) || 0;
+
+document.getElementById("runBest").textContent = runBest;
+
+function startRunner() {
+    if (running) return;
+
+    running = true;
+    runScore = 0;
+    document.getElementById("runScore").textContent = "0";
+    document.querySelectorAll(".obstacle").forEach(el => el.remove());
+
+    runInterval = setInterval(() => {
+        runScore++;
+        document.getElementById("runScore").textContent = runScore;
+    }, 1000);
+
+    obstacleInterval = setInterval(createObstacle, 1300);
+}
+
+function createObstacle() {
+    if (!running) return;
+
+    const area = document.getElementById("runnerArea");
+    const obstacle = document.createElement("div");
+    obstacle.className = "obstacle";
+    area.appendChild(obstacle);
+
+    const collision = setInterval(() => {
+        if (!running) {
+            clearInterval(collision);
+            return;
+        }
+
+        const player = document.getElementById("player");
+        const p = player.getBoundingClientRect();
+        const o = obstacle.getBoundingClientRect();
+
+        if (p.left < o.right && p.right > o.left && p.top < o.bottom && p.bottom > o.top) {
+            clearInterval(collision);
+            endRunner();
+            alert(translations[currentLang].game_over + runScore);
+        }
+    }, 50);
+
+    activeCollisions.push(collision);
+
+    setTimeout(() => {
+        obstacle.remove();
+        clearInterval(collision);
+    }, 2300);
+}
+
+function jump() {
+    if (!running) return;
+    const player = document.getElementById("player");
+    player.classList.remove("jump");
+    void player.offsetWidth;
+    player.classList.add("jump");
+}
+
+document.addEventListener("keydown", function(event) {
+    if (event.code === "Space" && document.getElementById("runnerWindow").classList.contains("active")) {
+        event.preventDefault();
+        jump();
+    }
+});
+
+document.getElementById("runnerArea").addEventListener("click", jump);
+
+function endRunner() {
+    if (!running) return;
+    running = false;
+
+    clearInterval(runInterval);
+    clearInterval(obstacleInterval);
+    activeCollisions.forEach(id => clearInterval(id));
+    activeCollisions = [];
+
+    document.querySelectorAll(".obstacle").forEach(el => el.remove());
+
+    if (runScore > runBest) {
+        runBest = runScore;
+        localStorage.setItem("dikaRunBest", runBest);
+        document.getElementById("runBest").textContent = runBest;
+    }
+}
+
+/* LUCKY BOXES */
+let boxesPlayed = false;
+
+function openBox(element) {
+    if (boxesPlayed) return;
+    boxesPlayed = true;
+
+    element.classList.add("open");
+    const rewards = ["🪙 +10 DIKA POINTS", "💎 +25 DIKA POINTS", "👑 +50 DIKA POINTS"];
+    const reward = rewards[Math.floor(Math.random() * rewards.length)];
+
+    setTimeout(() => {
+        element.textContent = "🎉";
+        document.getElementById("boxResult").textContent = translations[currentLang].box_win + reward;
+    }, 500);
+}
+
+function resetBoxes() {
+    boxesPlayed = false;
+    document.getElementById("boxResult").textContent = "";
+    document.querySelectorAll(".box").forEach(box => {
+        box.classList.remove("open");
+        box.textContent = "🎁";
+    });
+}
+
+/* SPIN WHEEL */
+const prizes = [
+    { text: "+100 DIKA POINTS", shortText: "+100" },
+    { text: "+20 DIKA POINTS",  shortText: "+20" },
+    { text: "+50 DIKA POINTS",  shortText: "+50" },
+    { text: "+10 DIKA POINTS",  shortText: "+10" },
+    { text: "+25 DIKA POINTS",  shortText: "+25" },
+    { text: "TRY AGAIN",        shortText: "TRY" }
+];
+
+const wheel = document.getElementById("wheel");
+const totalSectors = prizes.length;
+const sectorAngle = 360 / totalSectors;
+let wheelRotation = 0;
+let spinning = false;
+
+prizes.forEach((prize, index) => {
+    const label = document.createElement("div");
+    label.className = "wheel-label";
+    const angle = (index * sectorAngle) + (sectorAngle / 2);
+    label.style.transform = `rotate(${angle}deg)`;
+    label.innerHTML = `<span>${prize.shortText}</span>`;
+    wheel.appendChild(label);
+});
+
+function spinWheel() {
+    if (spinning) return;
+    spinning = true;
+
+    const button = document.getElementById("spinButton");
+    const resultText = document.getElementById("wheelResult");
+    button.disabled = true;
+    resultText.textContent = "";
+
+    const winningIndex = Math.floor(Math.random() * totalSectors);
+    const targetAngle = 360 - (winningIndex * sectorAngle) - (sectorAngle / 2);
+    const extraSpins = 360 * 5;
+
+    const currentMod = wheelRotation % 360;
+    wheelRotation += (extraSpins + targetAngle - currentMod);
+
+    wheel.style.transform = `rotate(${wheelRotation}deg)`;
+
+    setTimeout(() => {
+        spinning = false;
+        button.disabled = false;
+        resultText.textContent = translations[currentLang].wheel_win + prizes[winningIndex].text;
+    }, 4000);
+}
+</script>
 
 </body>
 </html>
